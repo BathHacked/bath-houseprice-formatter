@@ -1,0 +1,17 @@
+pip install csvkit
+
+csvgrep pp-complete.csv -f banesPostcodes.dat
+csvgrep -c 3 pp-complete.csv -f banesPostcodes.dat
+csvgrep -c 3 pp-complete.csv -m "BA2 6LW"
+csvgrep -c 3 pp-head.csv -m "BA2 6LW"
+csvgrep -c 4 pp-head.csv -m "BA2 6LW"
+csvgrep -c 0 pp-head.csv -m "BA2 6LW"
+csvgrep -c 4 -m pp-head.csv "BA2 6LW"
+csvgrep -c 4 -m pp-head.csv
+csvgrep -c 4 -m "BA2 6LW" pp-head.csv
+csvcut -c 4 pp-head.csv
+csvcut -c 4 pp-head.csv -l
+csvgrep -c 4 -m "PE33 0RU" pp-head.csv
+csvgrep -c 4 -f banesPostcodes.dat pp-head.csv
+csvgrep -c 4 -f banesPostcodes.dat pp-complete.csv
+csvgrep -c 4 -f banesPostcodes.dat pp-complete.csv > pp-banes-postcodes.csv
