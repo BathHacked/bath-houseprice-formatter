@@ -13,7 +13,7 @@ echo "postcode, latitude, longitude" > intermediate/3-postcodeswithlatlng.csv
 sed "s/[\"\(\)]//g" intermediate/2-postcodeswithcentroids.csv >> intermediate/3-postcodeswithlatlng.csv
 
 #Add a header row.
-echo "Transaction Unique Identifier,Price,Date of Transfer,Postcode,Property Type,Old/New,Duration,Primary Addressable Object Name,Secondary Addressable Object Name,Locality,Town/City,District,County,Location,Status" > intermediate/4-filteredtobathpostcodesonly.csv
+echo "transaction_unique_identifier,price,date_of_transfer,postcode,property_type,old_new,duration,primary_addressable_object_name,secondary_addressable_object_name,locality,town_city,district,county,location,status" > intermediate/4-filteredtobathpostcodesonly.csv
 
 #Filter the list of sales to only those which contain a Bath postcode.
 csvgrep -e CP1252 -c 4 -f intermediate/1-allpostcodes.csv datain/pp-complete.csv >> intermediate/4-filteredtobathpostcodesonly.csv

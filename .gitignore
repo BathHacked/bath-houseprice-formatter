@@ -1,2 +1,6 @@
 .vagrant
 datain/pp-complete.csv
+datain/pp-monthly-update.csv
+composer.lock
+vendor/*
+

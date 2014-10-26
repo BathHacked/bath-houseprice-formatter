@@ -2,9 +2,6 @@
 
 require_once "vendor/autoload.php";
 
-// Socrata Engine
-require_once("socrata.php");
-
 // Your credentials
 $root_url = "https://data.bathhacked.org";
 $app_token = "YpCcAYH2LzImTrwGFcvGHIRIH";
@@ -13,7 +10,12 @@ $email = "fletcher.tom@gmail.com";
 $password = "";
 
 // Create a new authenticated client - include your own email address (username) and password
-$socrata = new Socrata($root_url, $app_token, $email, $password);
+$socrata = new \BathHacked\Socrata(
+    $root_url,
+    $app_token,
+    $email,
+    $password
+);
 
 echo "Reading output.csv... \n";
 // Read the CSV into an array.
@@ -29,17 +31,14 @@ while (($line = fgetcsv($file)) !== FALSE) {
 fclose($file);
 
 echo "Read ".count( $records )." records with ".count( $records[0] )." fields\n";
-//var_dump( $records[0] );
-//var_dump( $records[1] );
+var_dump( $records[0] );
+var_dump( $records[1] );
 
 $records = array_slice($records, 40000, 10);
 
-echo "Encoding to JSON...\n";
-$jsonEncoded = json_encode($records);
-
 echo "Uploading to Socrata...\n";
 // Send to Socrata.
-$response = $socrata->post("/resource/" . $database_id, $jsonEncoded);
+$response = $socrata->post('/resource/'.$database_id, $records);
 var_dump($response);
 
 // Output when finished
