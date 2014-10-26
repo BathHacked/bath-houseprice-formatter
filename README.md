@@ -5,7 +5,7 @@ Takes the Land Registry Houseprice Price Paid data, filters it to houses sold wi
 
 **Usage**
 
-Get the latest house-price registry data from:
+Get the latest complete house-price registry data from:
 https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads#history 
 (csv file direct link: http://publicdata.landregistry.gov.uk/market-trend-data/price-paid-data/a/pp-complete.csv)
 

@@ -2,6 +2,8 @@
 set -v
 cd /vagrant
 
+rm -f intermediate/*.csv
+
 #Create a list of all possible postcodes
 csvcut datain/Bath___North_East_Somerset_Postcodes.csv -c 2 > intermediate/1-allpostcodes.csv
 
@@ -14,10 +16,10 @@ sed "s/[\"\(\)]//g" intermediate/2-postcodeswithcentroids.csv >> intermediate/3-
 echo "Transaction Unique Identifier,Price,Date of Transfer,Postcode,Property Type,Old/New,Duration,Primary Addressable Object Name,Secondary Addressable Object Name,Locality,Town/City,District,County,Location,Status" > intermediate/4-filteredtobathpostcodesonly.csv
 
 #Filter the list of sales to only those which contain a Bath postcode.
-csvgrep -c 4 -f intermediate/1-allpostcodes.csv datain/pp-complete.csv >> intermediate/4-filteredtobathpostcodesonly.csv
+csvgrep -e CP1252 -c 4 -f intermediate/1-allpostcodes.csv datain/pp-complete.csv >> intermediate/4-filteredtobathpostcodesonly.csv
 
 #Filter again because csvgrep always copies the first line (Bug: https://github.com/onyxfish/csvkit/issues/254).
-csvgrep -c 4 -f intermediate/1-allpostcodes.csv intermediate/4-filteredtobathpostcodesonly.csv >> intermediate/5-filteredtobathpostcodesonly.csv
+csvgrep -c 4 -f intermediate/1-allpostcodes.csv intermediate/4-filteredtobathpostcodesonly.csv > intermediate/5-filteredtobathpostcodesonly.csv
 
 #Rejoin the possible postcodes to the filtered list so we can add the centroid.
 csvjoin -c 1,4 intermediate/3-postcodeswithlatlng.csv intermediate/5-filteredtobathpostcodesonly.csv > intermediate/6-filteredwithlatlng.csv
