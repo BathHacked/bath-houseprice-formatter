@@ -5,5 +5,3 @@ sudo apt-get install -yq python-dev python-pip python-setuptools build-essential
 sudo pip install csvkit;
 
 cd /vagrant && php composer.phar install
-
-/vagrant/convert.sh;
