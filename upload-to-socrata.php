@@ -26,7 +26,9 @@ $csvheadings = fgetcsv($file);
 while (($line = fgetcsv($file)) !== FALSE) {
     //$line is an array of the csv elements
     //print_r($line);
-    array_push( $records, array_combine($csvheadings, $line) );
+    $newRow = array_combine($csvheadings, $line);
+    array_push( $records, $newRow );
+    
 }
 fclose($file);
 
@@ -34,7 +36,7 @@ echo "Read ".count( $records )." records with ".count( $records[0] )." fields\n"
 var_dump( $records[0] );
 var_dump( $records[1] );
 
-$records = array_slice($records, 40000, 10);
+//$records = array_slice($records, 40000, 10);
 
 echo "Uploading to Socrata...\n";
 // Send to Socrata.

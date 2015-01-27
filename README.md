@@ -13,7 +13,7 @@ If you're on Windows or don't have the dependencies installed, install vagrant, 
     
 Vagrant will boot a VM, and install the dependencies. Then use vagrant ssh and proceed as below.
 
-Run the following scripts in order:
+Either run doeverything.sh (which does the following 3), or run the following scripts in order:
 
 *Download.sh*
 Run download.sh to populate /datain with the latest complete house-price registry data from:
