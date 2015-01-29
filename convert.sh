@@ -1,6 +1,5 @@
 #! /bin/bash 
 set -v
-cd /vagrant
 
 rm -f intermediate/*.csv
 
