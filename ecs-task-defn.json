@@ -1,0 +1,11 @@
+[
+  {
+    "environment": [],
+    "name": "bathhouseprice",
+    "image": "crashthatch/bathhouseprice",
+    "cpu": 1024,
+    "portMappings": [],
+    "memory": 1024,
+    "essential": true
+  }
+]
