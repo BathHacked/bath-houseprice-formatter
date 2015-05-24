@@ -9,6 +9,10 @@ $database_id = "ifh9-xtsp";
 $email = "fletcher.tom@gmail.com";
 $password = "";
 
+if( $password == "" || $email == "" || $app_token == "" ){
+    die('No email / apptoken / password in upload-to-socrate.php. Add missing fields, and then re-run upload-to-socrata.php.');
+}
+
 // Create a new authenticated client - include your own email address (username) and password
 $socrata = new \BathHacked\Socrata(
     $root_url,
@@ -36,12 +40,15 @@ echo "Read ".count( $records )." records with ".count( $records[0] )." fields\n"
 var_dump( $records[0] );
 var_dump( $records[1] );
 
-//$records = array_slice($records, 40000, 10);
-
 echo "Uploading to Socrata...\n";
-// Send to Socrata.
-$response = $socrata->post('/resource/'.$database_id, $records);
-var_dump($response);
+for( $i=0; $i < count($records); $i += 1000){
+    $pageOfRecords = array_slice($records, $i, 1000);
+
+    // Send to Socrata.
+    $response = $socrata->post('/resource/'.$database_id, $pageOfRecords);
+    echo "Uploaded page ".(($i/1000)+1)." / ".ceil(count($records)/1000).". \n";
+    var_dump($response);
+}
 
 // Output when finished
 echo "\n All data imported!";
