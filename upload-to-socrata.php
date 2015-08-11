@@ -7,7 +7,7 @@ $root_url = "https://data.bathhacked.org";
 $app_token = "YpCcAYH2LzImTrwGFcvGHIRIH";
 $database_id = "ifh9-xtsp";
 $email = "fletcher.tom@gmail.com";
-$password = "";
+$password = getenv('SOCRATA_PASS');
 
 if( $password == "" || $email == "" || $app_token == "" ){
     die('No email / apptoken / password in upload-to-socrate.php. Add missing fields, and then re-run upload-to-socrata.php.');

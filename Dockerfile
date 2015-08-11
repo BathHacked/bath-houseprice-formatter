@@ -4,6 +4,7 @@ MAINTAINER Tom Fletcher <fletcher.tom@gmail.com>
 
 ADD . /bath-houseprice-formatter/
 WORKDIR /bath-houseprice-formatter
+RUN chmod +x ./bootstrap.sh
 RUN ./bootstrap.sh
 
 ENTRYPOINT ./doeverything.sh
