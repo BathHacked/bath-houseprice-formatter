@@ -1,5 +1,5 @@
 # This is a comment
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Tom Fletcher <fletcher.tom@gmail.com>
 
 ADD . /bath-houseprice-formatter/
